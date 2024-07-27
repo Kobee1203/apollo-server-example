@@ -1,5 +1,3 @@
-import { uuid } from 'uuidv4';
-
 export type AuthorTable = Record<string, AuthorRow>;
 
 export type AuthorRow = {
@@ -8,8 +6,8 @@ export type AuthorRow = {
   dateOfBirth: string | null;
 };
 
-export const AUTHOR_ID_1 = uuid();
-export const AUTHOR_ID_2 = uuid();
+export const AUTHOR_ID_1 = crypto.randomUUID();
+export const AUTHOR_ID_2 = crypto.randomUUID();
 
 export const AUTHORS: AuthorTable = {
   [AUTHOR_ID_1]: {

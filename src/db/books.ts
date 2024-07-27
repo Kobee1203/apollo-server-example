@@ -1,4 +1,3 @@
-import { uuid } from 'uuidv4';
 import { AUTHOR_ID_1, AUTHOR_ID_2 } from './authors';
 
 export type BookTable = Record<string, BookRow>;
@@ -9,9 +8,9 @@ export type BookRow = {
   authorId: string;
 };
 
-export const BOOK_ID_1 = uuid();
-export const BOOK_ID_2 = uuid();
-export const BOOK_ID_3 = uuid();
+export const BOOK_ID_1 = crypto.randomUUID();
+export const BOOK_ID_2 = crypto.randomUUID();
+export const BOOK_ID_3 = crypto.randomUUID();
 
 export const BOOKS: BookTable = {
   [BOOK_ID_1]: {

@@ -1,9 +1,15 @@
 import { createServer } from './server';
+import { startStandaloneServer } from '@apollo/server/standalone';
+import { DbClient } from './db/client';
 
 const server = createServer();
 
-const PORT = 4000;
-
-server.listen(PORT, () => {
-  console.log(`Listening at http://localhost:${PORT}/graphql`);
+const { url } = await startStandaloneServer(server, {
+  context: async ({ req }) => ({
+    dbClient: new DbClient(),
+    token: req.headers.token
+  }),
+  listen: { port: 4000 },
 });
+
+console.log(`🚀  Server ready at ${url}`);

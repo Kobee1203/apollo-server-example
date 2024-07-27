@@ -1,7 +1,6 @@
 import { BOOKS, BookRow } from './books';
 import { fakeAsync } from './utils';
 import { AUTHORS, AuthorRow } from './authors';
-import { uuid } from 'uuidv4';
 
 export class DbClient {
   getBooks(args?: { authorId?: string }): Promise<BookRow[]> {
@@ -20,7 +19,7 @@ export class DbClient {
 
   createBook(data: { title: string; authorId: string }): Promise<BookRow> {
     return fakeAsync(() => {
-      const id = uuid();
+      const id = crypto.randomUUID();
       BOOKS[id] = { id, ...data };
       return BOOKS[id];
     });
@@ -37,7 +36,7 @@ export class DbClient {
   createAuthor(data: { name: string; dateOfBirth?: string | null }) {
     const { name, dateOfBirth } = data;
     return fakeAsync(() => {
-      const id = uuid();
+      const id = crypto.randomUUID();
       AUTHORS[id] = {
         id,
         name,
