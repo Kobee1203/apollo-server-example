@@ -1,9 +1,11 @@
 import { QueryResolvers } from '../generated/graphql';
-import { convertBook, convertAuthor } from '../utils';
+import { convertAuthor, convertBook } from '../utils';
+import { Pagination } from './types';
 
 export const queryResolvers: QueryResolvers = {
-  books: async (_, __, { dbClient }) => {
-    const books = await dbClient.getBooks();
+  books: async (_, { limit, offset }, { dbClient }) => {
+    const pagination: Pagination = limit ? { limit, offset: offset ?? 0 } : undefined;
+    const books = await dbClient.getBooks(pagination ? { pagination } : undefined);
     return books.map(convertBook);
   },
 

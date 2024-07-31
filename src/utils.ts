@@ -1,5 +1,5 @@
 import { BookRow } from './db/books';
-import { Book, Author } from './generated/graphql';
+import { Author, Book } from './generated/graphql';
 import { AuthorRow } from './db/authors';
 
 export function convertBook(book: BookRow): Book {

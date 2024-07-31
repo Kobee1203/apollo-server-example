@@ -7,7 +7,7 @@ const server = createServer();
 const { url } = await startStandaloneServer(server, {
   context: async ({ req }) => ({
     dbClient: new DbClient(),
-    token: req.headers.token
+    token: req.headers.token,
   }),
   listen: { port: 4000 },
 });

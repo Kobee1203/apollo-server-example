@@ -1,15 +1,17 @@
-import { BOOKS, BookRow } from './books';
-import { fakeAsync } from './utils';
-import { AUTHORS, AuthorRow } from './authors';
+import { BookRow, BOOKS } from './books';
+import { fakeAsync, paginate } from './utils';
+import { AuthorRow, AUTHORS } from './authors';
+import { Pagination } from '../resolvers/types';
 
 export class DbClient {
-  getBooks(args?: { authorId?: string }): Promise<BookRow[]> {
+  getBooks(args?: { authorId?: string, pagination?: Pagination }): Promise<BookRow[]> {
     return fakeAsync(() =>
-      args && args.authorId
-        ? Object.values(BOOKS).filter(
-          ({ authorId }) => authorId === args.authorId,
-        )
-        : Object.values(BOOKS),
+      paginate(
+        args?.authorId
+          ? Object.values(BOOKS).filter(({ authorId }) => authorId === args.authorId)
+          : Object.values(BOOKS),
+        args?.pagination,
+      ),
     );
   }
 
