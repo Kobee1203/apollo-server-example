@@ -7,8 +7,8 @@ export class DbClient {
     return fakeAsync(() =>
       args && args.authorId
         ? Object.values(BOOKS).filter(
-            ({ authorId }) => authorId === args.authorId,
-          )
+          ({ authorId }) => authorId === args.authorId,
+        )
         : Object.values(BOOKS),
     );
   }
@@ -17,10 +17,16 @@ export class DbClient {
     return fakeAsync(() => BOOKS[id]);
   }
 
-  createBook(data: { title: string; authorId: string }): Promise<BookRow> {
+  createBook(data: { title: string; authorId: string, publicationDate?: string | null }): Promise<BookRow> {
+    const { title, authorId, publicationDate } = data;
     return fakeAsync(() => {
       const id = crypto.randomUUID();
-      BOOKS[id] = { id, ...data };
+      BOOKS[id] = {
+        id,
+        title,
+        authorId,
+        publicationDate: publicationDate || null,
+      };
       return BOOKS[id];
     });
   }

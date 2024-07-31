@@ -32,6 +32,7 @@ export type Book = {
   __typename?: 'Book';
   author: Author;
   id: Scalars['ID']['output'];
+  publicationDate?: Maybe<Scalars['Date']['output']>;
   title: Scalars['String']['output'];
 };
 
@@ -50,6 +51,7 @@ export type MutationCreateAuthorArgs = {
 
 export type MutationCreateBookArgs = {
   authorId: Scalars['ID']['input'];
+  publicationDate?: InputMaybe<Scalars['Date']['input']>;
   title: Scalars['String']['input'];
 };
 
@@ -176,6 +178,7 @@ export type AuthorResolvers<ContextType = Context, ParentType extends ResolversP
 export type BookResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Book'] = ResolversParentTypes['Book']> = ResolversObject<{
   author?: Resolver<ResolversTypes['Author'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  publicationDate?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;

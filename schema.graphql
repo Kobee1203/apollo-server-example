@@ -6,7 +6,7 @@ type Query {
 }
 
 type Mutation {
-  createBook(title: String!, authorId: ID!): Book!
+  createBook(title: String!, authorId: ID!, publicationDate: Date): Book!
   createAuthor(name: String!, dateOfBirth: Date): Author!
 }
 
@@ -16,6 +16,7 @@ type Book {
   id: ID!
   title: String!
   author: Author!
+  publicationDate: Date
 }
 
 type Author {
