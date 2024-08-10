@@ -26,11 +26,13 @@ export type Author = {
   dateOfBirth?: Maybe<Scalars['Date']['output']>;
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
+  photoUrl?: Maybe<Scalars['String']['output']>;
 };
 
 export type Book = {
   __typename?: 'Book';
   author: Author;
+  coverUrl?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   publicationDate?: Maybe<Scalars['Date']['output']>;
   title: Scalars['String']['output'];
@@ -180,11 +182,13 @@ export type AuthorResolvers<ContextType = Context, ParentType extends ResolversP
   dateOfBirth?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  photoUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export type BookResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Book'] = ResolversParentTypes['Book']> = ResolversObject<{
   author?: Resolver<ResolversTypes['Author'], ParentType, ContextType>;
+  coverUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   publicationDate?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;

@@ -17,11 +17,13 @@ type Book {
   title: String!
   author: Author!
   publicationDate: Date
+  coverUrl: String
 }
 
 type Author {
   id: ID!
   name: String!
   dateOfBirth: Date
+  photoUrl: String
   books: [Book!]!
 }
